@@ -33,10 +33,12 @@ def replace_with_emoji(sentence):
                 
                 # Replace token with emoji using re.sub with case insensitivity
                 emoji_sentence = re.sub(rf'\b{token}\b', sub, emoji_sentence, flags=re.IGNORECASE)
+                
+                # Convert the shortcodes to actual emojis using emoji.emojize with language='alias'
                 emoji_sentence = emoji.emojize(emoji_sentence, language='alias')
-                break  # No need to search further for this token
+                
+                break  # No need to search EMOJI_DATA further for this token
     
-    # Convert the shortcodes to actual emojis using emoji.emojize with language='alias'
     return emoji_sentence
 
 if __name__=='__main__':
