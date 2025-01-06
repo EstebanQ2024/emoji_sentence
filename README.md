@@ -28,12 +28,15 @@ I love 🕉️nipotent 🅰️ 🍕 🍕, 🐱s, bobcats, 🐜s, 🐷s, 🥐s, a
 
 
 --
+
 **For additional debugging print statements:**
+
 Setting keyword arg debug=True will output information about the words (tokens) extracted from the text, and the emoji matches and substitutions.
 
 Example:
 
 Tokens: {'re-pizzaaaaa', 'bobcats', 'a', 'i', 'love', 'thumbs_up', 'croissants', 'omnipotent', 'cats', 'ants', 'pigs', 'bread', 'pizzaaaa', 'pizza', 'thumbsup', 'and'}
+
 Emoji Found: 🅰️, Token: a, Match: :a:, Sub: :a:
 
 Emoji Found: 👍, Token: thumbs_up, Match: :thumbs_up:, Sub: :thumbs_up:
@@ -51,7 +54,6 @@ Emoji Found: 🐖, Token: pigs, Match: :pig:, Sub: :pig:s
 Emoji Found: 🍞, Token: bread, Match: :bread:, Sub: :bread:
 
 Emoji Found: 🍕, Token: pizzaaaa, Match: :pizza:, Sub: :pizza:aaa
-
 
 Emoji Found: 🍕, Token: pizza, Match: :pizza:, Sub: :pizza:
 
