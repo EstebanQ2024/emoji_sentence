@@ -1,0 +1,46 @@
+import re
+import emoji
+from emoji import EMOJI_DATA
+
+def replace_with_emoji(sentence):
+    # Define regex pattern to extract tokens (letters, hyphens, and underscores)
+    pattern = r'\b[A-Za-z_-]+\b'  # Match whole words (using word boundaries)
+    
+    # Find all tokens in the sentence (case-insensitive) and store them as lowercase
+    tokens = set(re.findall(pattern, sentence.lower()))  # Use set for unique tokens, case-insensitive
+    #Toggle print statement for debugging
+    print("Tokens:", tokens)
+
+    emoji_sentence = sentence
+    for token in tokens:
+
+        # Find emoji for matching 'en'
+        for emoji_char, data in EMOJI_DATA.items():
+            match = ''
+            if token.startswith(data.get("en", "").strip(':')):
+                match = data.get("en", "")
+            elif any(token == alias.strip(':') for alias in data.get("alias", [])):
+                match = next((alias for alias in data.get("alias", []) if token == alias.strip(':')), None)
+            
+            if match:
+                #Toggle print statement for debugging
+                print(f"Emoji Found: {emoji_char}, Token: {token}")
+                
+                # Replace token with emoji using re.sub with case insensitivity
+                emoji_sentence = re.sub(rf'\b{re.escape(match.strip(":"))}', match, emoji_sentence, flags=re.IGNORECASE)
+                emoji_sentence = emoji.emojize(emoji_sentence, language='alias')
+                break  # No need to search further for this token
+    
+    # Convert the shortcodes to actual emojis using emoji.emojize with language='alias'
+    return emoji_sentence
+
+if __name__=='__main__':
+    # Example sentence
+    sentence = "I love pizza, cats, bobcats, ants, pigs, croissants, and bread thumbs_up thumbsup re-Pizzaaaaa!"
+
+    # Get the emoji-replaced sentence
+    emoji_sentence = replace_with_emoji(sentence)
+
+    # Print the result
+    print(sentence)
+    print(emoji_sentence)
