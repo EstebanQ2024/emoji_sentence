@@ -1,3 +1,5 @@
+To use, only one function needs to be imported:
+from replace_emojis import replace_with_emoji
     """
     Replaces words in a sentence with corresponding emojis if available.
 
