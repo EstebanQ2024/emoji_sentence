@@ -17,14 +17,15 @@ def replace_with_emoji(sentence):
         # Find emoji for matching 'en'
         for emoji_char, data in EMOJI_DATA.items():
             match = ''
-            if token.startswith(data.get("en", "").strip(':')):
+            if token == data.get("en", "").strip(':'):
                 match = data.get("en", "")
-                sub = re.sub(rf'{match.strip(":")}',rf'{match}',token)
+            elif token.startswith(data.get("en", "").strip(':')):
+                match = data.get("en", "")
             elif any(token == alias.strip(':') for alias in data.get("alias", [])):
                 match = next((alias for alias in data.get("alias", []) if token == alias.strip(':')), None)
-                sub = re.sub(rf'{match.strip(":")}',rf'{match}',token)
             
             if match:
+                sub = re.sub(rf'{match.strip(":")}',rf'{match}',token)
                 #Toggle print statement for debugging
                 print(f"Emoji Found: {emoji_char}, Token: {token}")
                 
