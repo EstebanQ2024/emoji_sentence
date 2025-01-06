@@ -10,9 +10,9 @@
     """
 
 Three match cases are used:
-- Word exact match to emoji in 'EN' language
-- Emoji 'EN' description matchs the beggining of a word
-- Exact match of word with emoji 'alias'
+- Exact match of a word to emoji 'EN' language description
+- Emoji 'EN' description matches the beggining of a word
+- Exact match of a word with emoji 'alias'
 
 Emoji data is from the EMOJI_DATA dictionary of the emoji library-
 
