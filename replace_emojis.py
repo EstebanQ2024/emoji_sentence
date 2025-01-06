@@ -19,15 +19,17 @@ def replace_with_emoji(sentence):
             match = ''
             if token.startswith(data.get("en", "").strip(':')):
                 match = data.get("en", "")
+                sub = re.sub(rf'{match.strip(":")}',rf'{match}',token)
             elif any(token == alias.strip(':') for alias in data.get("alias", [])):
                 match = next((alias for alias in data.get("alias", []) if token == alias.strip(':')), None)
+                sub = re.sub(rf'{match.strip(":")}',rf'{match}',token)
             
             if match:
                 #Toggle print statement for debugging
                 print(f"Emoji Found: {emoji_char}, Token: {token}")
                 
                 # Replace token with emoji using re.sub with case insensitivity
-                emoji_sentence = re.sub(rf'\b{re.escape(match.strip(":"))}', match, emoji_sentence, flags=re.IGNORECASE)
+                emoji_sentence = re.sub(rf'\b{token}\b', sub, emoji_sentence, flags=re.IGNORECASE)
                 emoji_sentence = emoji.emojize(emoji_sentence, language='alias')
                 break  # No need to search further for this token
     
@@ -36,7 +38,7 @@ def replace_with_emoji(sentence):
 
 if __name__=='__main__':
     # Example sentence
-    sentence = "I love pizza, cats, bobcats, ants, pigs, croissants, and bread thumbs_up thumbsup re-Pizzaaaaa!"
+    sentence = "I love cats, bobcats, ants, pigs, croissants, and bread thumbs_up thumbsup PIzzaaaa re-Pizzaaaaa!"
 
     # Get the emoji-replaced sentence
     emoji_sentence = replace_with_emoji(sentence)
