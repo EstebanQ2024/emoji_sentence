@@ -16,14 +16,14 @@ def replace_with_emoji(sentence):
         
         match = ''
         
-        # Find emoji for matching 'en'
+        # Find emoji matching according to ideal order of match cases
         for emoji_char, data in EMOJI_DATA.items():
   
-            if token == data.get("en", "").strip(':'):
+            if token == data.get("en", "").strip(':'): # Exact match
                 match = data.get("en", "")
-            elif token.startswith(data.get("en", "").strip(':')):
+            elif token.startswith(data.get("en", "").strip(':')): # Starts with match
                 match = data.get("en", "")
-            elif any(token == alias.strip(':') for alias in data.get("alias", [])):
+            elif any(token == alias.strip(':') for alias in data.get("alias", [])): # Alias match
                 match = next((alias for alias in data.get("alias", []) if token == alias.strip(':')), None)
             
             if match:
