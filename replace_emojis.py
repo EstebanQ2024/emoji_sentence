@@ -21,7 +21,9 @@ def replace_with_emoji(sentence, debug=False):
     if debug:
         print("Tokens:", tokens)
 
-    emoji_sentence = sentence
+    # Initialize emoji sentence with a first pass of emojize to convert shortcodes in input sentence
+    emoji_sentence = emoji.emojize(sentence, language='alias')
+    
     for token in tokens:
         match = ''
         
@@ -54,7 +56,7 @@ def replace_with_emoji(sentence, debug=False):
 
 if __name__ == '__main__':
     # Example sentence
-    sentence = "I love Pizza pizza, cats, bobcats, ants, pigs, croissants, and bread thumbs_up thumbsup PIzzaaaa re-Pizzaaaaa!"
+    sentence = "I love omnipotent a Pizza pizza, cats, bobcats, ants, pigs, croissants, and bread :green_heart: thumbs_up thumbsup PIzzaaaa re-Pizzaaaaa!"
 
     # Get the emoji-replaced sentence
     emoji_sentence = replace_with_emoji(sentence, debug=True)
