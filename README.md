@@ -13,12 +13,12 @@ To use, only one function needs to be imported:
         str: The sentence with words replaced by emojis where applicable.
     """
 
+Emoji data is taken from the EMOJI_DATA dictionary of the emoji library.
+
 Three match cases are used:
 - Exact match of a word to emoji 'EN' language description
 - Emoji 'EN' description matches the beggining of a word
 - Exact match of a word with emoji 'alias'
-
-Emoji data is taken from the EMOJI_DATA dictionary of the emoji library.
 
 Example:
 
